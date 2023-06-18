@@ -3,7 +3,7 @@
 
 #include "../config.hpp"
 #include "../state/state.hpp"
-#include "../policy/random2.hpp"
+#include "../policy/minimax.hpp"
 
 
 State* root;
@@ -42,10 +42,9 @@ void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
   while(true) {
     // Choose a random spot.
-    auto move = Random2::get_move(root, 10);
+    auto move = MiniMax::get_move(root, 3);
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
-    fout << "cici\n"; 
     // Remember to flush the output to ensure the last action is written to file.
     fout.flush();
     break;
@@ -60,7 +59,7 @@ void write_valid_spot(std::ofstream& fout) {
  * @return int 
  */
 int main(int, char** argv) {
-  srand(RANDOM_SEED);
+  //srand(RANDOM_SEED);
   std::ifstream fin(argv[1]);
   std::ofstream fout(argv[2]);
 

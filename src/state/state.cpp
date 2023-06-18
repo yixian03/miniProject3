@@ -15,15 +15,38 @@
 int State::evaluate(){
   // [TODO] design your own evaluation function
   int score = 0;
-  for(int i=0;i<2;i++){
-    for(int j=0;j<BOARD_H;j++){
-      for(int k=0;k<BOARD_W;k++){
-        if(i == 0){ //white
-          score += 5 * this->board.board[i][j][k];
-        }else{  //black
-          score -= 5 * this->board.board[i][j][k];
-        }
-      }
+  for(int j=0;j<BOARD_H;j++){
+    for(int k=0;k<BOARD_W;k++){
+      //king
+      if(this->board.board[this->player][j][k] == 6)  
+        score += 400;
+      if(this->board.board[1-this->player][j][k] == 6)
+        score -= 400;
+      //queen
+      if(this->board.board[this->player][j][k] == 5)  
+        score += 200;
+      if(this->board.board[1-this->player][j][k] == 5)
+        score -= 200;
+      //bishop
+      if(this->board.board[this->player][j][k] == 4)  
+        score += 100;
+      if(this->board.board[1-this->player][j][k] == 4)
+        score -= 100;
+      //knight
+      if(this->board.board[this->player][j][k] == 3)  
+        score += 75;
+      if(this->board.board[1-this->player][j][k] == 3)
+        score -= 75;
+      //rook
+      if(this->board.board[this->player][j][k] == 2)  
+        score += 40;
+      if(this->board.board[1-this->player][j][k] == 2)
+        score -= 40;
+      //pawn
+      if(this->board.board[this->player][j][k] == 1)  
+        score += 10;
+      if(this->board.board[1-this->player][j][k] == 1)
+        score -= 10;
     }
   }
   return score;
