@@ -19,19 +19,19 @@ int State::evaluate(){
     for(int k=0;k<BOARD_W;k++){
       //king
       if(this->board.board[this->player][j][k] == 6)  
-        score += 400;
+        score += 500;
       if(this->board.board[1-this->player][j][k] == 6)
-        score -= 400;
+        score -= 500;
       //queen
       if(this->board.board[this->player][j][k] == 5)  
-        score += 200;
+        score += 300;
       if(this->board.board[1-this->player][j][k] == 5)
-        score -= 200;
+        score -= 300;
       //bishop
       if(this->board.board[this->player][j][k] == 4)  
-        score += 100;
+        score += 140;
       if(this->board.board[1-this->player][j][k] == 4)
-        score -= 100;
+        score -= 140;
       //knight
       if(this->board.board[this->player][j][k] == 3)  
         score += 75;
@@ -49,7 +49,7 @@ int State::evaluate(){
         score -= 10;
     }
   }
-  return score;
+  return -score;
 }
 
 
