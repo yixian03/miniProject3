@@ -45,7 +45,6 @@ void write_valid_spot(std::ofstream& fout) {
     auto move = Random2::get_move(root, 10);
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
-    fout << "cici\n"; 
     // Remember to flush the output to ensure the last action is written to file.
     fout.flush();
     break;
