@@ -14,7 +14,19 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+  int score = 0;
+  for(int i=0;i<2;i++){
+    for(int j=0;j<BOARD_H;j++){
+      for(int k=0;k<BOARD_W;k++){
+        if(i == 0){ //white
+          score += 5 * this->board.board[i][j][k];
+        }else{  //black
+          score -= 5 * this->board.board[i][j][k];
+        }
+      }
+    }
+  }
+  return score;
 }
 
 
