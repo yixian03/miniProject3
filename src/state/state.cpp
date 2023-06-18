@@ -49,7 +49,7 @@ int State::evaluate(){
         score -= 10;
     }
   }
-  return -score;
+  return -score;  //i don't known why but it works~
 }
 
 

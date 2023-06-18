@@ -13,7 +13,7 @@ Move MiniMax::get_move(State *state, int depth){
     if(!state->legal_actions.size())
     state->get_legal_actions();
 
-    mydebug << "haha\n";
+    //mydebug << "haha\n";
     auto bestValue = dfsGetValue(state, depth);
     auto actions = state->legal_actions;
     
@@ -30,7 +30,7 @@ pair<int, int> MiniMax::dfsGetValue(State *state, int depth){  //odd depth for m
         return p;
     }
     if(depth % 2 == 1){ //search for max
-        mydebug << "max~" << std::endl;
+        //mydebug << "max~" << std::endl;
         pair<int, int>bestValue;
         bestValue.first = -2e9;
         bestValue.second = 0;
@@ -39,7 +39,7 @@ pair<int, int> MiniMax::dfsGetValue(State *state, int depth){  //odd depth for m
         for(auto it=actions.begin();it!=actions.end();it++){
             auto nextState = state->next_state(*it);
             int score = dfsGetValue(nextState, depth-1).first;
-            mydebug << "score: " << score << ", orig: " << bestValue.first << "\n";
+            //mydebug << "score: " << score << ", orig: " << bestValue.first << "\n";
             if(score > bestValue.first){
                 bestValue.first = score;
                 bestValue.second = n;
@@ -48,7 +48,7 @@ pair<int, int> MiniMax::dfsGetValue(State *state, int depth){  //odd depth for m
         }
         return bestValue;
     }else{  //search for min
-        mydebug << "min~!~" << std::endl;
+        //mydebug << "min~!~" << std::endl;
         pair<int, int>bestValue;
         bestValue.first = 2e9;
         bestValue.second = 0;
