@@ -7,7 +7,7 @@
 #include "./minimax.hpp"
 using namespace std;
 
-std::ofstream mydebug("fortest.txt",std::ios::app);
+//std::ofstream mydebug("fortest.txt",std::ios::app);
 
 Move MiniMax::get_move(State *state, int depth){
     if(!state->legal_actions.size())
@@ -25,7 +25,7 @@ pair<int, int> MiniMax::dfsGetValue(State *state, int depth){  //odd depth for m
     if(depth == 0){
         pair<int, int> p;
         p.first = state->evaluate();
-        mydebug << p.first << std::endl;
+        //mydebug << p.first << std::endl;
         p.second = 0;
         return p;
     }

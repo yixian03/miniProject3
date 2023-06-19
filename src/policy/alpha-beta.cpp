@@ -6,7 +6,7 @@
 #include "./alpha-beta.hpp"
 using namespace std;
 
-std::ofstream mydebug("fortest.txt",std::ios::app);
+//std::ofstream mydebug("fortest.txt",std::ios::app);
 
 Move AplhaBeta::get_move(State *state, int depth){
     if(!state->legal_actions.size())
@@ -24,7 +24,7 @@ pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth, int alpha, int be
     if(depth == 0){
         pair<int, int> p;
         p.first = state->evaluate();
-        mydebug << p.first << std::endl;
+        //mydebug << p.first << std::endl;
         p.second = 0;
         return p;
     }
