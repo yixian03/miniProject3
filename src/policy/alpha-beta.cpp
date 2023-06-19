@@ -2,7 +2,6 @@
 
 #include <fstream>
 
-
 #include "../state/state.hpp"
 #include "./alpha-beta.hpp"
 using namespace std;
@@ -14,13 +13,13 @@ Move AplhaBeta::get_move(State *state, int depth){
     state->get_legal_actions();
 
     //mydebug << "haha\n";
-    auto bestValue = dfsGetValue(state, depth);
+    auto bestValue = dfsGetValue(state, depth, -2e9, 2e9);
     auto actions = state->legal_actions;
     
     return actions[bestValue.second];
 }
 
-pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth){  //odd depth for max, even for min
+pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth, int alpha, int beta){  //odd depth for max, even for min
 
     if(depth == 0){
         pair<int, int> p;
@@ -38,12 +37,16 @@ pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth){  //odd depth for
         auto actions = state->legal_actions;
         for(auto it=actions.begin();it!=actions.end();it++){
             auto nextState = state->next_state(*it);
-            int score = dfsGetValue(nextState, depth-1).first;
+            int score = dfsGetValue(nextState, depth-1, alpha, beta).first;
             //mydebug << "score: " << score << ", orig: " << bestValue.first << "\n";
             if(score > bestValue.first){
                 bestValue.first = score;
                 bestValue.second = n;
             }
+            if(score > alpha)
+                alpha = score;
+            if(alpha >= beta)
+                break;
             n ++;
         }
         return bestValue;
@@ -56,11 +59,15 @@ pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth){  //odd depth for
         auto actions = state->legal_actions;
         for(auto it=actions.begin();it!=actions.end();it++){
             auto nextState = state->next_state(*it);
-            int score = dfsGetValue(nextState, depth-1).first;
+            int score = dfsGetValue(nextState, depth-1, alpha, beta).first;
             if(score < bestValue.first){
                 bestValue.first = score;
                 bestValue.second = n;
             }
+            if(score < beta)
+                beta = score;
+            if(alpha >= beta)
+                break;
             n ++;
         }
         return bestValue;
