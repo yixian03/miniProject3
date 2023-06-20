@@ -23,7 +23,10 @@ pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth, int alpha, int be
 
     if(depth == 0){
         pair<int, int> p;
-        p.first = state->evaluate2();
+        if(state->player == 1)
+            p.first = state->evaluate();
+        else
+            p.first = state->evaluate2();
         //mydebug << p.first << std::endl;
         p.second = 0;
         return p;

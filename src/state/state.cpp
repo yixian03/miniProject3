@@ -92,11 +92,11 @@ int State::evaluate2(){
       //further evaluation
       /*if(1-this->player == 0){  //pawn in front of king
         if(this->board.board[0][j][k] == 1){
-          if(this->board.board[0][j+1][k] == 6)  score += 150;
+          if(this->board.board[0][j+1][k] == 6)  score += 1;
         }
       }else{ 
         if(this->board.board[1][j][k] == 1){
-          if(this->board.board[1][j-1][k] == 6)  score += 150;
+          if(this->board.board[1][j-1][k] == 6)  score += 1;
         }
       }*/
       if(this->board.board[1-this->player][j][k] == 3){ //knight surrounded
