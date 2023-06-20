@@ -19,8 +19,8 @@ Move AplhaBeta::get_move(State *state, int depth){
     return actions[bestValue.second];
 }
 
-pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth, int alpha, int beta){  //odd depth for max, even for min
-
+pair<int, int> AplhaBeta::dfsGetValue(State *state, int depth, int alpha, int beta){  
+    //odd depth for max, even for min
     if(depth == 0){
         pair<int, int> p;
         p.first = state->evaluate();

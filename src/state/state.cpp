@@ -104,16 +104,16 @@ int State::evaluate2(){
           for(int q=-2;q<3;q++){
             //if(j+p < 0 || j+p >= BOARD_H) continue;
             //if(k+q < 0 || k+q >= BOARD_W) continue;
-            int what = this->board.board[1-this->player][j+p][k+q];
+            int count = this->board.board[1-this->player][j+p][k+q];
             if (j+p>=0 && j+q>=0 && j+p<BOARD_H && j+q<BOARD_W){
-              if(what){
+              if(count){
                 score += 3;
-                mydebug << j << ", " << k << " count\n";
+                //mydebug << j << ", " << k << " count\n";
               }
             }
           }
         }
-        //score -= 3;
+        score -= 3;
       }
     }
   }
