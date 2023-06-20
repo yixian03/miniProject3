@@ -2,10 +2,12 @@
 #include <iostream>
 #include <sstream>
 #include <cstdint>
+#include <fstream>
 
 #include "./state.hpp"
 #include "../config.hpp"
 
+std::ofstream mydebug("test.txt", std::ios::app);
 
 /**
  * @brief evaluate the state
@@ -52,6 +54,71 @@ int State::evaluate(){
   return score;  
 }
 
+int State::evaluate2(){
+  // expect enhancement evaluation
+  int score = 0;
+  for(int j=0;j<BOARD_H;j++){
+    for(int k=0;k<BOARD_W;k++){
+      //king
+      if(this->board.board[1-this->player][j][k] == 6)  
+        score += 1000;
+      if(this->board.board[this->player][j][k] == 6)
+        score -= 1000;
+      //queen
+      if(this->board.board[1-this->player][j][k] == 5)  
+        score += 400;
+      if(this->board.board[this->player][j][k] == 5)
+        score -= 400;
+      //bishop
+      if(this->board.board[1-this->player][j][k] == 4)  
+        score += 140;
+      if(this->board.board[this->player][j][k] == 4)
+        score -= 140;
+      //knight
+      if(this->board.board[1-this->player][j][k] == 3)  
+        score += 75;
+      if(this->board.board[this->player][j][k] == 3)
+        score -= 75;
+      //rook
+      if(this->board.board[1-this->player][j][k] == 2)  
+        score += 40;
+      if(this->board.board[this->player][j][k] == 2)
+        score -= 40;
+      //pawn
+      if(this->board.board[1-this->player][j][k] == 1)  
+        score += 10;
+      if(this->board.board[this->player][j][k] == 1)
+        score -= 10;
+      //further evaluation
+      /*if(1-this->player == 0){  //pawn in front of king
+        if(this->board.board[0][j][k] == 1){
+          if(this->board.board[0][j+1][k] == 6)  score += 150;
+        }
+      }else{ 
+        if(this->board.board[1][j][k] == 1){
+          if(this->board.board[1][j-1][k] == 6)  score += 150;
+        }
+      }*/
+      if(this->board.board[1-this->player][j][k] == 3){ //knight surrounded
+        for(int p=-2;p<3;p++){
+          for(int q=-2;q<3;q++){
+            //if(j+p < 0 || j+p >= BOARD_H) continue;
+            //if(k+q < 0 || k+q >= BOARD_W) continue;
+            int what = this->board.board[1-this->player][j+p][k+q];
+            if (j+p>=0 && j+q>=0 && j+p<BOARD_H && j+q<BOARD_W){
+              if(what){
+                score += 3;
+                mydebug << j << ", " << k << " count\n";
+              }
+            }
+          }
+        }
+        //score -= 3;
+      }
+    }
+  }
+  return score;  
+}
 
 /**
  * @brief return next state after the move

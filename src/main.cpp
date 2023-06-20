@@ -461,7 +461,7 @@ int main(int argc, char** argv) {
     log << data << std::endl;
     
     //log evaluatefunction
-    log << game.evaluate() << std::endl;
+    //log << game.evaluate() << std::endl;
 
     data = game.encode_state();
     std::ofstream fout(file_state);

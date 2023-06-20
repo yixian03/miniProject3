@@ -41,7 +41,7 @@ void read_board(std::ifstream& fin) {
 void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
   while(true) {
-    int depth = 3;
+    int depth = 5;
     // Choose a random spot.
     auto move = AplhaBeta::get_move(root, depth); //change depth to change how depth the search
     fout << move.first.first << " " << move.first.second << " "\
@@ -49,7 +49,7 @@ void write_valid_spot(std::ofstream& fout) {
     // Remember to flush the output to ensure the last action is written to file.
     fout.flush();
     depth += 2;
-    //break;
+    break;
   }
 }
 
