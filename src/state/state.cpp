@@ -18,38 +18,38 @@ int State::evaluate(){
   for(int j=0;j<BOARD_H;j++){
     for(int k=0;k<BOARD_W;k++){
       //king
-      if(this->board.board[this->player][j][k] == 6)  
+      if(this->board.board[1-this->player][j][k] == 6)  
         score += 500;
-      if(this->board.board[1-this->player][j][k] == 6)
+      if(this->board.board[this->player][j][k] == 6)
         score -= 500;
       //queen
-      if(this->board.board[this->player][j][k] == 5)  
+      if(this->board.board[1-this->player][j][k] == 5)  
         score += 300;
-      if(this->board.board[1-this->player][j][k] == 5)
+      if(this->board.board[this->player][j][k] == 5)
         score -= 300;
       //bishop
-      if(this->board.board[this->player][j][k] == 4)  
+      if(this->board.board[1-this->player][j][k] == 4)  
         score += 140;
-      if(this->board.board[1-this->player][j][k] == 4)
+      if(this->board.board[this->player][j][k] == 4)
         score -= 140;
       //knight
-      if(this->board.board[this->player][j][k] == 3)  
+      if(this->board.board[1-this->player][j][k] == 3)  
         score += 75;
-      if(this->board.board[1-this->player][j][k] == 3)
+      if(this->board.board[this->player][j][k] == 3)
         score -= 75;
       //rook
-      if(this->board.board[this->player][j][k] == 2)  
+      if(this->board.board[1-this->player][j][k] == 2)  
         score += 40;
-      if(this->board.board[1-this->player][j][k] == 2)
+      if(this->board.board[this->player][j][k] == 2)
         score -= 40;
       //pawn
-      if(this->board.board[this->player][j][k] == 1)  
+      if(this->board.board[1-this->player][j][k] == 1)  
         score += 10;
-      if(this->board.board[1-this->player][j][k] == 1)
+      if(this->board.board[this->player][j][k] == 1)
         score -= 10;
     }
   }
-  return -score;  //i don't known why but it works~
+  return score;  
 }
 
 
